@@ -47,6 +47,8 @@ $HouseNameComboBox.width         = 195
 $HouseNameComboBox.height        = 20
 $HouseNameComboBox.location      = New-Object System.Drawing.Point(83,155)
 $HouseNameComboBox.Font          = New-Object System.Drawing.Font('Microsoft Sans Serif',10)
+$HouseNameComboBox.Items.AddRange(@("Gryffindor","Slytherin","Ravenclaw","Hufflepuff"))
+
 
 $CreateUserButton                = New-Object system.Windows.Forms.Button
 $CreateUserButton.text           = "Create User"
@@ -65,9 +67,36 @@ $CreateUserButton.Add_Click({
 
     #$MakeHogwartsUser.Text = $FullName
 
-    New-ADUser -Name $FullName -OtherAttributes @{
-    'GivenName'=$FirstName
-    'Surname'=$Surname
+
+
+
+
+
+    if($HouseNameComboBox.Text -eq "Choose House") {
+
+       $MakeHogwartsUser.Text = "Please choose a house!"
+
+    } else {
+    
+        New-ADUser -Name $FullName -Surname $Surname -GivenName $FirstName
+
+        if($HouseNameComboBox.Text -eq "Gryffindor") {
+            Add-ADGroupMember "Gryfindor" -Members $FullName
+        }
+
+        if($HouseNameComboBox.Text -eq "Slytherin") {
+            Add-ADGroupMember "Slytherin" -Members $FullName
+        }
+
+        if($HouseNameComboBox.Text -eq "Ravenclaw") {
+            Add-ADGroupMember "Ravenclaw" -Members $FullName
+        }
+
+        if($HouseNameComboBox.Text -eq "Hufflepuff") {
+            Add-ADGroupMember "Hufflepuff" -Members $FullName
+        }    
+
+
     }
  })
 
