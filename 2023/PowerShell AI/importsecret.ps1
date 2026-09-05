@@ -1,5 +1,7 @@
 Import-Module Microsoft.Powershell.SecretStore
-# Set the variable from PREVIOUSLY CREATED PLAINTEXT FILE, can replace the Get-Content with your key in plaintext or make it prompt
+# Copy APIKeys.example.txt to APIKeys.txt and put your key in it. APIKeys.txt is
+# listed in .gitignore so it stays on your machine. You can also swap the
+# Get-Content below for your key inline, or make it prompt.
 $SecretKey = Get-Content -Path .\APIKeys.txt
 # Register the Secret Vault
 Register-SecretVault -ModuleName Microsoft.PowerShell.SecretStore

@@ -1,0 +1,16 @@
+# Local key files (copy the .example templates and fill these in locally)
+APIKeys.txt
+*.key
+*.pem
+*.pfx
+*.p12
+.env
+.env.*
+secrets.json
+*credentials*.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
